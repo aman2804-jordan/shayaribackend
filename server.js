@@ -11,7 +11,7 @@ const app = express();
 // ✅ middleware FIRST
 app.use(express.json());
 app.use(cors({
-  origin: process.env.FRONTEND_URL,
+  origin: process.env.FRONTEND_URL || "https://shayarifrontend.vercel.app/",
   credentials: true
 }));
  // replaces body-parser
@@ -123,7 +123,7 @@ app.post("/api/login", async (req, res) => {
     // Generate JWT token
     const token = jwt.sign(
       { id: user._id, email: user.email },
-      "mySecretKey", // keep in .env for security
+      process.env.JWT_SECRET, // keep in .env for security
       { expiresIn: "1h" }
     );
 
