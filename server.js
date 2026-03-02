@@ -11,7 +11,7 @@ const app = express();
 // ✅ middleware FIRST
 app.use(express.json());
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "https://shayarifrontend.vercel.app/",
+  origin: process.env.FRONTEND_URL || "https://shayarifrontend.vercel.app",
   credentials: true
 }));
  // replaces body-parser
