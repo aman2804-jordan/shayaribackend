@@ -7,11 +7,23 @@ const bcrypt = require("bcryptjs");   // or "bcrypt"
 const jwt = require("jsonwebtoken");
 
 const app = express();
+const allowedOrigins = [
+  "https://kalamaejazbaaat.vercel.app",
+  "https://shayarifrontend.vercel.app",
+  "http://localhost:5173"
+];
 
 // ✅ middleware FIRST
 app.use(express.json());
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "https://shayarifrontend.vercel.app",
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true
 }));
  // replaces body-parser
