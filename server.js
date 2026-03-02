@@ -40,11 +40,6 @@ const ShayariSchema = new mongoose.Schema({
 }, { timestamps: true });
 const Shayari = mongoose.model('Shayari', ShayariSchema);
 
-// GET route
-app.get("/", (req, res) => {
-  res.send("API Running...");
-});
-
 // POST route
 app.post('/api/shayari', async (req, res) => {
   try {
