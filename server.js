@@ -120,11 +120,11 @@ app.post("/api/login", async (req, res) => {
 
     // Check if user exists
     const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ message: "Invalid email or email" });
+    if (!user) return res.status(400).json({ message: "Invalid Email or Password" });
 
     // Compare password
     if (user.password !== password) {
-      return res.status(400).json({ message: "Invalid email or password" });
+      return res.status(400).json({ message: "Invalid Email or Password" });
     }
 
     // Generate JWT token
